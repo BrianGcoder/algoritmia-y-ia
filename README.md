@@ -41,19 +41,15 @@ algoritmos y proyectos de inteligencia artificial.
 Los ejercicios son material de practica; algunos pueden estar incompletos o
 requerir correcciones antes de usarlos como soluciones definitivas.
 
-## Publicar en GitHub
+## Repositorio en GitHub
 
-1. Crea en GitHub un repositorio vacio llamado `algoritmia-y-ia` (nombre
-   visible: **Algoritmia y IA**).
-2. Desde esta carpeta, ejecuta:
+Este proyecto esta publicado en
+[BrianGcoder/algoritmia-y-ia](https://github.com/BrianGcoder/algoritmia-y-ia).
 
-   ```bash
-   git init
-   git add .
-   git commit -m "Organiza ejercicios de algoritmia"
-   git branch -M main
-   git remote add origin https://github.com/USUARIO/algoritmia-y-ia.git
-   git push -u origin main
-   ```
+Para publicar cambios futuros desde esta carpeta:
 
-   Reemplaza `USUARIO` por tu nombre de usuario de GitHub.
+```bash
+git add .
+git commit -m "Describe tus cambios"
+git push
+```
