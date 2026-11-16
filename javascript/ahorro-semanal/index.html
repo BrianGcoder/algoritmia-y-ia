@@ -3,9 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Catálogo de ejercicios de algoritmia en JavaScript y PSeInt, organizados por categoría.">
+    <title>Práctica de algoritmia | JavaScript y PSeInt</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #17243b;
+            --muted: #64748b;
+            --line: #dce5ef;
+            --paper: #ffffff;
+            --canvas: #f3f7fb;
+            --blue: #2457d6;
+            --blue-dark: #193fa5;
+            --mint: #e7f7f1;
+            --shadow: 0 16px 40px rgba(27, 49, 82, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--canvas);
+            color: var(--ink);
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--blue);
+        }
+
+        a:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #f4b740;
+            outline-offset: 3px;
+        }
+
+        .hero {
+            padding: 64px 24px 48px;
+            background:
+                radial-gradient(ellipse at 85% 20%, rgba(107, 218, 183, 0.25), transparent 34%),
+                linear-gradient(130deg, #10264b, #1d4385 68%, #2457d6);
+            color: #fff;
+        }
+
+        .hero-content,
+        main,
+        footer {
+            width: min(1080px, 100%);
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            color: #a7e8d2;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 720px;
+            margin-bottom: 12px;
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            line-height: 1.08;
+        }
+
+        .hero-copy {
+            max-width: 660px;
+            margin-bottom: 24px;
+            color: #e2eaf7;
+            font-size: 1.08rem;
+        }
+
+        .hero-links,
+        .exercise-links,
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-links a,
+        .exercise-links a {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            font-size: 0.92rem;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        .hero-links a {
+            border-color: rgba(255, 255, 255, 0.35);
+            color: #fff;
+        }
+
+        .hero-links a:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        main {
+            padding: 32px 24px 64px;
+        }
+
+        .stats {
+            margin-bottom: 34px;
+        }
+
+        .stat {
+            min-width: 145px;
+            padding: 12px 16px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--paper);
+        }
+
+        .stat strong,
+        .stat span {
+            display: block;
+        }
+
+        .stat strong {
+            font-size: 1.25rem;
+        }
+
+        .stat span,
+        .section-intro,
+        .exercise-description,
+        .note {
+            color: var(--muted);
+        }
+
+        .exercise-section {
+            margin-top: 42px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: end;
+            justify-content: space-between;
+            gap: 8px 20px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 0;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .section-intro {
+            max-width: 640px;
+            margin-bottom: 0;
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 16px;
+        }
+
+        .exercise-card,
+        .javascript-card {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--paper);
+            box-shadow: var(--shadow);
+        }
+
+        .exercise-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+            padding: 20px;
+        }
+
+        .exercise-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.12rem;
+        }
+
+        .exercise-description {
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+
+        .exercise-links {
+            margin-top: auto;
+        }
+
+        .exercise-links a:first-child {
+            border-color: var(--blue);
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .exercise-links a:first-child:hover {
+            background: var(--blue-dark);
+        }
+
+        .exercise-links a:last-child:hover {
+            background: #f0f5ff;
+        }
+
+        .javascript-card {
+            padding: clamp(20px, 4vw, 32px);
+            border-top: 5px solid #d6a52f;
+        }
+
+        .javascript-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.25rem;
+        }
+
+        .prompt-label {
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: 700;
+        }
+
+        .exercise-prompt {
+            display: block;
+            width: 100%;
+            min-height: 112px;
+            resize: vertical;
+            padding: 14px;
+            border: 1px solid #cbd6e4;
+            border-radius: 10px;
+            background: #fbfcfe;
+            color: var(--ink);
+            font: inherit;
+        }
+
+        .note {
+            margin: 12px 0 0;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            padding: 0 24px 32px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 48px 20px 36px;
+            }
+
+            main {
+                padding: 24px 20px 48px;
+            }
+
+            .hero-links a,
+            .exercise-links a {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header class="hero">
+        <div class="hero-content">
+            <p class="eyebrow">Plataforma de entrenamiento</p>
+            <h1>Aprende algoritmia resolviendo ejercicios</h1>
+            <p class="hero-copy">
+                Aqui estaran publicados los ejercicios de las clases de algoritmia y javascript.
+            </p>
+            <nav class="hero-links" aria-label="Categorías de ejercicios">
+                <a href="#javascript">JavaScript</a>
+                <a href="#condicionales">Condicionales</a>
+                <a href="#ciclos">Ciclos</a>
+                <a href="#calculos">Cálculos</a>
+                <a href="#control">Control y validación</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="stats" aria-label="Resumen del contenido">
+            <div class="stat"><strong>1</strong><span>reto JavaScript</span></div>
+            <div class="stat"><strong>13</strong><span>ejercicios PSeInt</span></div>
+            <div class="stat"><strong>4</strong><span>categorías PSeInt</span></div>
+        </div>
+
+        <section class="exercise-section" id="javascript" aria-labelledby="javascript-title">
+            <div class="section-heading">
+                <h2 id="javascript-title">JavaScript</h2>
+                <p class="section-intro">Practica entradas, acumuladores y ciclos mientras resuelves un caso cotidiano.</p>
+            </div>
+            <article class="javascript-card">
+                <h3>Ahorro semanal para comprar audífonos</h3>
+                <p class="exercise-description">
+                    Usa un ciclo para calcular cuántas semanas se necesitan para alcanzar el precio objetivo
+                    ahorrando una cantidad fija cada semana.
+                </p>
+                <label class="prompt-label" for="javascript-prompt">Consigna del ejercicio</label>
+                <textarea class="exercise-prompt" id="javascript-prompt" readonly>Escribe un programa que pregunte cuánto cuestan los audífonos que quieres comprar. Simula que ahorras $5.000 cada semana hasta reunir al menos ese monto. Muestra en la consola cuánto llevas ahorrado al final de cada semana y cuántas semanas necesitaste.</textarea>
+                <p class="note">Abre el ejercicio para probarlo; responde la pregunta y consulta los resultados en la consola del navegador.</p>
+                <div class="exercise-links">
+                    <a href="./">Abrir ejercicio</a>
+                    <a href="script.js">Ver código JavaScript</a>
+                </div>
+            </article>
+        </section>
+
+        <section class="exercise-section" id="condicionales" aria-labelledby="condicionales-title">
+            <div class="section-heading">
+                <h2 id="condicionales-title">PSeInt · Condicionales</h2>
+                <p class="section-intro">Toma decisiones usando condiciones, rangos y opciones.</p>
+            </div>
+            <div class="exercise-grid">
+                <article class="exercise-card">
+                    <h3>Ingreso a la discoteca</h3>
+                    <p class="exercise-description">Valida edad, documento, forma de pago y lista de acceso antes de permitir la entrada.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/condicionales/discoteca.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Semáforo de inventario</h3>
+                    <p class="exercise-description">Clasifica las existencias como suficientes, bajas o agotadas según la cantidad de envases.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/condicionales/semaforo-inventario.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Tarifa de parqueadero</h3>
+                    <p class="exercise-description">Calcula el cobro según el tipo de vehículo, las horas de uso y el descuento por factura.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/condicionales/tarifa-parqueadero.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="exercise-section" id="ciclos" aria-labelledby="ciclos-title">
+            <div class="section-heading">
+                <h2 id="ciclos-title">PSeInt · Ciclos y repeticiones</h2>
+                <p class="section-intro">Repite instrucciones para procesar datos, contar o construir patrones.</p>
+            </div>
+            <div class="exercise-grid">
+                <article class="exercise-card">
+                    <h3>Cierre de caja del parqueadero</h3>
+                    <p class="exercise-description">Acumula los cobros ingresados hasta recibir 0 y muestra los carros atendidos y el total recaudado.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ciclos/cajero-parqueadero.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Resumen de calificaciones</h3>
+                    <p class="exercise-description">Procesa cinco notas y calcula promedio, aprobados, nota mayor y menor, e identifica refuerzos.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ciclos/calificaciones.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>El caracol en el pozo</h3>
+                    <p class="exercise-description">Simula el avance diario y el retroceso nocturno de un caracol que intenta salir de un pozo.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ciclos/caracol.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Pirámide de asteriscos</h3>
+                    <p class="exercise-description">Dibuja una pirámide centrada usando ciclos anidados y una altura indicada por el usuario.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ciclos/piramide.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="exercise-section" id="calculos" aria-labelledby="calculos-title">
+            <div class="section-heading">
+                <h2 id="calculos-title">PSeInt · Cálculos y subprocesos</h2>
+                <p class="section-intro">Resuelve problemas de fechas y dinero, y organiza operaciones en subprocesos.</p>
+            </div>
+            <div class="exercise-grid">
+                <article class="exercise-card">
+                    <h3>Edad aproximada en días</h3>
+                    <p class="exercise-description">Convierte una edad expresada en años a una cantidad aproximada de días.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/edad-en-dias.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Cálculo de edad con fechas</h3>
+                    <p class="exercise-description">Explora el cálculo de edad en días usando fechas, meses y años bisiestos. El algoritmo está en desarrollo.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/calculo-edad-fechas.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Factura de restaurante</h3>
+                    <p class="exercise-description">Suma precios hasta terminar el pedido y calcula subtotal, impuesto, propina y total usando subprocesos.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/factura-restaurante.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Propina y cuenta por persona</h3>
+                    <p class="exercise-description">Calcula una propina del 10 %, el total de la cuenta y cuánto paga cada persona.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/propina-restaurante.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="exercise-section" id="control" aria-labelledby="control-title">
+            <div class="section-heading">
+                <h2 id="control-title">PSeInt · Control y validación</h2>
+                <p class="section-intro">Administra entradas y salidas y controla intentos de acceso.</p>
+            </div>
+            <div class="exercise-grid">
+                <article class="exercise-card">
+                    <h3>Control de vehículos</h3>
+                    <p class="exercise-description">Registra entradas y salidas de carros y motos, calcula el cobro y muestra cuántos vehículos quedan dentro.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/parqueadero-control-vehiculos.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+                <article class="exercise-card">
+                    <h3>Validación de PIN</h3>
+                    <p class="exercise-description">Simula el pago con tarjeta y limita a tres los intentos para ingresar el PIN correcto.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/validar-pin.psc">Ver ejercicio</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Para ejecutar un ejercicio PSeInt, abre su archivo, copia el pseudocódigo y pégalo en PSeInt Web.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

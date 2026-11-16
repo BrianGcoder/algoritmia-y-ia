@@ -17,26 +17,54 @@ algoritmos y proyectos de inteligencia artificial.
   - `calificaciones.psc`: promedio, aprobados y notas extremas.
   - `caracol.psc`: simulacion de avance y retroceso.
   - `piramide.psc`: impresion de una piramide de asteriscos.
-- [Otros ejercicios](pseint/ejercicios/)
-  - `calculo-edad-fechas.psc`: ejercicio de calculo de edad con fechas.
-  - `edad-en-dias.psc`: aproximacion de edad en dias.
-  - `factura-restaurante.psc` y `propina-restaurante.psc`: cuentas de restaurante.
+- [Calculos y subprocesos](pseint/ejercicios/)
+  - `calculo-edad-fechas.psc`: calculo de edad con fechas y anos bisiestos.
+  - `edad-en-dias.psc`: conversion aproximada de edad a dias.
+  - `factura-restaurante.psc`: subtotal, impuesto y propina organizados en
+    subprocesos.
+  - `propina-restaurante.psc`: cuenta y propina divididas entre varias personas.
+- [Control y validacion](pseint/ejercicios/)
   - `parqueadero-control-vehiculos.psc`: control de entradas y salidas.
   - `validar-pin.psc`: validacion de PIN con intentos limitados.
 
 ### JavaScript
 
-- [Ahorro semanal](javascript/ahorro-semanal/): solicita un costo objetivo,
-  calcula cuantas semanas se necesitan ahorrando 5000 por semana y muestra el
-  resultado en la consola del navegador.
+- [Catálogo de ejercicios](javascript/ahorro-semanal/index.html): presenta el
+  ejercicio de ahorro semanal en JavaScript y organiza los ejercicios PSeInt
+  por categoría. Cada reto PSeInt enlaza su archivo y el editor web.
+
+## Proposito y aprendizaje
+
+La pagina se creo para reunir las consignas y los archivos en un solo lugar,
+ordenados por tema, y facilitar su practica en JavaScript o en PSeInt Web.
+Cada grupo ayuda a aprender una herramienta distinta:
+
+- **Condicionales:** comparan datos y rangos para elegir una respuesta, como
+  permitir un ingreso o calcular una tarifa.
+- **Ciclos:** repiten pasos para contar, acumular resultados o crear patrones.
+- **Calculos y subprocesos:** aplican formulas y separan tareas para resolver
+  problemas de fechas y dinero con mayor orden.
+- **Control y validacion:** actualizan el estado de un sistema y verifican
+  reglas, como registrar vehiculos o limitar intentos de acceso.
+- **JavaScript:** el ahorro semanal suma un monto fijo en cada vuelta y se
+  detiene al alcanzar el precio; practica ciclos, acumuladores y condiciones.
+
+Estos conceptos sirven como base para crear programas mas completos y resolver
+problemas nuevos paso a paso.
+
+**Conclusion:** practicar algoritmos ayuda a convertir problemas cotidianos en
+soluciones claras.
 
 ## Requisitos y uso
 
 - Para los archivos `.psc`, instala [PSeInt](https://pseint.sourceforge.net/)
   y abre el archivo que quieras ejecutar.
-- Para el ejemplo de JavaScript, abre `javascript/ahorro-semanal/index.html` en
-  un navegador. Responde la pregunta y consulta los resultados en la consola
-  del navegador.
+- Para ejecutar los ejercicios PSeInt en línea, abre
+  [PSeInt Web](https://pseint-web.app/), copia el contenido del archivo `.psc`
+  y pégalo en el editor.
+- Abre `javascript/ahorro-semanal/index.html` en un navegador para ver las
+  consignas. En el ejercicio de JavaScript, responde la pregunta y consulta los
+  resultados en la consola del navegador.
 
 Los ejercicios son material de practica; algunos pueden estar incompletos o
 requerir correcciones antes de usarlos como soluciones definitivas.
