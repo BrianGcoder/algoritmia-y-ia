@@ -7,16 +7,18 @@
     <title>Práctica de algoritmia | JavaScript y PSeInt</title>
     <style>
         :root {
-            color-scheme: light;
-            --ink: #17243b;
-            --muted: #64748b;
-            --line: #dce5ef;
-            --paper: #ffffff;
-            --canvas: #f3f7fb;
-            --blue: #2457d6;
-            --blue-dark: #193fa5;
-            --mint: #e7f7f1;
-            --shadow: 0 16px 40px rgba(27, 49, 82, 0.08);
+            color-scheme: dark;
+            --background: #090b14;
+            --surface: #111522;
+            --surface-raised: #171c2c;
+            --text: #f3f5ff;
+            --muted: #a7aec4;
+            --electric: #42d9ff;
+            --pastel: #a9eaff;
+            --intense: #5267ff;
+            --purple: #a879ff;
+            --line: rgb(169 234 255 / 16%);
+            --shadow: 0 24px 80px rgb(0 0 0 / 28%);
         }
 
         * {
@@ -24,44 +26,72 @@
         }
 
         body {
+            min-width: 320px;
+            min-height: 100vh;
             margin: 0;
-            background: var(--canvas);
-            color: var(--ink);
-            font-family: "Segoe UI", Arial, sans-serif;
-            line-height: 1.6;
+            background:
+                radial-gradient(ellipse at 12% 8%, rgb(82 103 255 / 18%), transparent 34rem),
+                radial-gradient(ellipse at 90% 30%, rgb(168 121 255 / 12%), transparent 28rem),
+                var(--background);
+            color: var(--text);
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            line-height: 1.65;
         }
 
         a {
-            color: var(--blue);
+            color: inherit;
         }
 
         a:focus-visible,
-        textarea:focus-visible {
-            outline: 3px solid #f4b740;
+        textarea:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--electric);
             outline-offset: 3px;
         }
 
         .hero {
-            padding: 64px 24px 48px;
+            position: relative;
+            overflow: hidden;
+            padding: clamp(42px, 7vw, 72px) 24px;
+            border-bottom: 1px solid var(--line);
             background:
-                radial-gradient(ellipse at 85% 20%, rgba(107, 218, 183, 0.25), transparent 34%),
-                linear-gradient(130deg, #10264b, #1d4385 68%, #2457d6);
-            color: #fff;
+                radial-gradient(ellipse at 85% 20%, rgb(66 217 255 / 14%), transparent 34rem),
+                linear-gradient(130deg, rgb(23 28 44 / 98%), rgb(15 19 34 / 95%));
+            box-shadow: var(--shadow);
+        }
+
+        .hero::after {
+            position: absolute;
+            top: -110px;
+            right: max(calc((100vw - 1040px) / 2 - 80px), -80px);
+            width: 340px;
+            height: 340px;
+            border: 1px solid rgb(66 217 255 / 20%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 32px rgb(82 103 255 / 6%), 0 0 0 68px rgb(168 121 255 / 5%);
+            content: "";
+            pointer-events: none;
         }
 
         .hero-content,
         main,
         footer {
-            width: min(1080px, 100%);
+            width: min(1040px, 100%);
             margin: 0 auto;
         }
 
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 24px;
+        }
+
         .eyebrow {
-            margin: 0 0 12px;
-            color: #a7e8d2;
+            margin: 0 0 8px;
+            color: var(--electric);
             font-size: 0.78rem;
             font-weight: 700;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
         }
 
@@ -73,17 +103,22 @@
         }
 
         h1 {
-            max-width: 720px;
-            margin-bottom: 12px;
-            font-size: clamp(2.2rem, 6vw, 4rem);
-            line-height: 1.08;
+            max-width: 760px;
+            margin-bottom: 8px;
+            font-size: clamp(2.3rem, 6vw, 4rem);
+            letter-spacing: -0.055em;
+            line-height: 1.1;
         }
 
         .hero-copy {
             max-width: 660px;
-            margin-bottom: 24px;
-            color: #e2eaf7;
+            margin-bottom: 22px;
+            color: var(--muted);
             font-size: 1.08rem;
+        }
+
+        .hero-copy strong {
+            color: var(--pastel);
         }
 
         .hero-links,
@@ -101,24 +136,26 @@
             align-items: center;
             justify-content: center;
             padding: 9px 14px;
-            border: 1px solid var(--line);
-            border-radius: 9px;
+            border: 1px solid rgb(169 234 255 / 20%);
+            border-radius: 999px;
             font-size: 0.92rem;
             font-weight: 650;
             text-decoration: none;
+            transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
         }
 
         .hero-links a {
-            border-color: rgba(255, 255, 255, 0.35);
-            color: #fff;
+            color: var(--pastel);
         }
 
-        .hero-links a:hover {
-            background: rgba(255, 255, 255, 0.12);
+        .hero-links a:hover,
+        .hero-links a:focus-visible {
+            border-color: var(--electric);
+            background: rgb(66 217 255 / 10%);
         }
 
         main {
-            padding: 32px 24px 64px;
+            padding: 34px 24px 64px;
         }
 
         .stats {
@@ -129,8 +166,8 @@
             min-width: 145px;
             padding: 12px 16px;
             border: 1px solid var(--line);
-            border-radius: 12px;
-            background: var(--paper);
+            border-radius: 14px;
+            background: linear-gradient(145deg, rgb(23 28 44 / 95%), rgb(15 18 30 / 95%));
         }
 
         .stat strong,
@@ -166,6 +203,11 @@
         .section-heading h2 {
             margin-bottom: 0;
             font-size: clamp(1.5rem, 3vw, 2rem);
+            letter-spacing: -0.025em;
+        }
+
+        .section-heading h2 span {
+            color: var(--electric);
         }
 
         .section-intro {
@@ -181,10 +223,17 @@
 
         .exercise-card,
         .javascript-card {
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            background: var(--paper);
-            box-shadow: var(--shadow);
+            border: 1px solid rgb(169 234 255 / 12%);
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgb(23 28 44 / 95%), rgb(15 18 30 / 95%));
+            box-shadow: 0 16px 40px rgb(0 0 0 / 16%);
+            transition: border-color 180ms ease, transform 180ms ease;
+        }
+
+        .exercise-card:hover,
+        .javascript-card:hover {
+            transform: translateY(-3px);
+            border-color: rgb(66 217 255 / 42%);
         }
 
         .exercise-card {
@@ -209,22 +258,23 @@
         }
 
         .exercise-links a:first-child {
-            border-color: var(--blue);
-            background: var(--blue);
+            border-color: var(--intense);
+            background: var(--intense);
             color: #fff;
         }
 
         .exercise-links a:first-child:hover {
-            background: var(--blue-dark);
+            background: #3d51e7;
         }
 
         .exercise-links a:last-child:hover {
-            background: #f0f5ff;
+            border-color: rgb(169 234 255 / 42%);
+            background: rgb(66 217 255 / 8%);
         }
 
         .javascript-card {
             padding: clamp(20px, 4vw, 32px);
-            border-top: 5px solid #d6a52f;
+            border-top: 4px solid var(--electric);
         }
 
         .javascript-card h3 {
@@ -244,16 +294,124 @@
             min-height: 112px;
             resize: vertical;
             padding: 14px;
-            border: 1px solid #cbd6e4;
+            border: 1px solid rgb(169 234 255 / 20%);
             border-radius: 10px;
-            background: #fbfcfe;
-            color: var(--ink);
+            background: var(--surface);
+            color: var(--text);
             font: inherit;
         }
 
         .note {
             margin: 12px 0 0;
             font-size: 0.9rem;
+        }
+
+        .code-disclosure {
+            margin-top: 18px;
+            overflow: hidden;
+            border: 1px solid rgb(82 103 255 / 30%);
+            border-radius: 12px;
+            background: rgb(9 11 20 / 65%);
+        }
+
+        .code-disclosure summary {
+            padding: 12px 16px;
+            color: var(--electric);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .code-disclosure summary:hover {
+            background: rgb(66 217 255 / 7%);
+        }
+
+        .code-block {
+            max-height: 520px;
+            margin: 0;
+            overflow: auto;
+            padding: 18px;
+            border-top: 1px solid var(--line);
+            color: #d7e3ff;
+            font: 0.88rem/1.65 Consolas, "Courier New", monospace;
+            tab-size: 4;
+        }
+
+        .week-label {
+            margin-bottom: 6px;
+            color: var(--electric);
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .ai-section {
+            margin-top: 54px;
+            padding-top: 34px;
+            border-top: 1px solid var(--line);
+        }
+
+        .ai-week-card {
+            margin-bottom: 18px;
+            padding: clamp(20px, 4vw, 32px);
+            border: 1px solid rgb(168 121 255 / 28%);
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgb(23 28 44 / 95%), rgb(15 18 30 / 95%));
+        }
+
+        .ai-week-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.25rem;
+        }
+
+        .ai-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+            justify-items: center;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .ai-image-frame {
+            position: relative;
+            width: min(100%, 360px);
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            aspect-ratio: 9 / 16;
+            background: var(--surface);
+        }
+
+        .ai-image-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ai-image-frame figcaption {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 8px 10px;
+            background: rgb(9 11 20 / 85%);
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        .archive-catalog {
+            margin-top: 54px;
+            border-top: 1px solid var(--line);
+        }
+
+        .archive-catalog > summary {
+            padding: 18px 0;
+            color: var(--pastel);
+            cursor: pointer;
+            font-weight: 700;
         }
 
         footer {
@@ -264,7 +422,11 @@
 
         @media (max-width: 600px) {
             .hero {
-                padding: 48px 20px 36px;
+                padding: 42px 0 36px;
+            }
+
+            .hero-content {
+                padding: 0 20px;
             }
 
             main {
@@ -275,6 +437,19 @@
             .exercise-links a {
                 flex: 1 1 100%;
             }
+
+            .ai-image-frame {
+                max-width: 300px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
@@ -282,31 +457,508 @@
     <header class="hero">
         <div class="hero-content">
             <p class="eyebrow">Plataforma de entrenamiento</p>
-            <h1>Aprende algoritmia resolviendo ejercicios</h1>
+            <h1>Historial de ejercicios de Algoritmia y JavaScript</h1>
             <p class="hero-copy">
-                Aqui estaran publicados los ejercicios de las clases de algoritmia y javascript.
+                Encuentra ejercicios de las clases de algoritmia y JavaScript organizados por tema, con sus códigos listos para consultar.
             </p>
             <nav class="hero-links" aria-label="Categorías de ejercicios">
-                <a href="#javascript">JavaScript</a>
-                <a href="#condicionales">Condicionales</a>
-                <a href="#ciclos">Ciclos</a>
-                <a href="#calculos">Cálculos</a>
-                <a href="#control">Control y validación</a>
+                <a href="#semana-1">Semana 1</a>
+                <a href="#semana-2">Semana 2</a>
+                <a href="#semana-3">Semana 3</a>
+                <a href="#ia">Inteligencia artificial</a>
             </nav>
         </div>
     </header>
 
     <main>
         <div class="stats" aria-label="Resumen del contenido">
-            <div class="stat"><strong>1</strong><span>reto JavaScript</span></div>
-            <div class="stat"><strong>13</strong><span>ejercicios PSeInt</span></div>
-            <div class="stat"><strong>4</strong><span>categorías PSeInt</span></div>
+            <div class="stat"><strong>15</strong><span>ejercicios de programación</span></div>
+            <div class="stat"><strong>3</strong><span>semanas de algoritmia</span></div>
+            <div class="stat"><strong>3</strong><span>semanas de IA</span></div>
         </div>
 
+        <section class="exercise-section" id="semana-1" aria-labelledby="semana-1-title">
+            <div class="section-heading">
+                <div>
+                    <p class="week-label">Algoritmia · Semana 1</p>
+                    <h2 id="semana-1-title">Fundamentos y operaciones</h2>
+                </div>
+                <p class="section-intro">Practica entradas, salidas, operaciones y cálculos básicos.</p>
+            </div>
+            <div class="exercise-grid">
+                <article class="exercise-card">
+                    <h3>Edad en días</h3>
+                    <p class="exercise-description">Convierte una edad en años a una cantidad aproximada de días.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/edad-en-dias.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo EdadEnDias
+    Definir edad, dias Como Entero
+    Escribir "¿Que edad tienes?"
+    Leer edad
+    dias &lt;- edad * 365
+    Escribir "Tienes aproximadamente ", dias, " dias vividos."
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Preparar una taza de café</h3>
+                    <p class="exercise-description">Describe en orden los pasos necesarios para preparar una taza de café.</p>
+                    <div class="exercise-links">
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo PrepararTazaDeCafe
+    Escribir "Calienta una taza de agua."
+    Escribir "Agrega el cafe a la taza."
+    Escribir "Vierte el agua caliente."
+    Escribir "Mezcla y sirve el cafe."
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Promedio de notas</h3>
+                    <p class="exercise-description">Lee tres notas, calcula su promedio y muestra el resultado.</p>
+                    <div class="exercise-links">
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo PromedioDeNotas
+    Definir nota1, nota2, nota3, promedio Como Real
+    Escribir "Escribe tres notas:"
+    Leer nota1, nota2, nota3
+    promedio &lt;- (nota1 + nota2 + nota3) / 3
+    Escribir "El promedio es: ", promedio
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Saludos en PSeInt</h3>
+                    <p class="exercise-description">Solicita el nombre de una persona y la saluda por pantalla.</p>
+                    <div class="exercise-links">
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Saludo
+    Definir nombre Como Caracter
+    Escribir "¿Como te llamas?"
+    Leer nombre
+    Escribir "¡Hola, ", nombre, "! Bienvenido."
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Propinas</h3>
+                    <p class="exercise-description">Calcula una propina del 10 %, el total de la cuenta y el valor por persona.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/propina-restaurante.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Propinas
+    Definir personas Como Entero
+    Definir cuenta, propina, total, unitario Como Real
+    Escribir "¿Cuantas personas son?"
+    Leer personas
+    Escribir "¿Cuanto es la cuenta?"
+    Leer cuenta
+    propina &lt;- cuenta * 0.10
+    total &lt;- cuenta + propina
+    unitario &lt;- total / personas
+    Escribir "Propina: $", propina
+    Escribir "Total: $", total
+    Escribir "Cada persona paga: $", unitario
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+            </div>
+        </section>
+
+        <section class="exercise-section" id="semana-2" aria-labelledby="semana-2-title">
+            <div class="section-heading">
+                <div>
+                    <p class="week-label">Algoritmia · Semana 2</p>
+                    <h2 id="semana-2-title">Condiciones y validaciones</h2>
+                </div>
+                <p class="section-intro">Usa decisiones lógicas para resolver situaciones y validar datos.</p>
+            </div>
+            <div class="exercise-grid">
+                <article class="exercise-card">
+                    <h3>Año bisiesto</h3>
+                    <p class="exercise-description">Comprueba si un año es divisible entre 4, teniendo en cuenta las excepciones de los siglos.</p>
+                    <div class="exercise-links">
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo AnioBisiesto
+    Definir anio Como Entero
+    Escribir "Escribe un año:"
+    Leer anio
+    Si (anio MOD 400 = 0) O ((anio MOD 4 = 0) Y (anio MOD 100 &lt;> 0)) Entonces
+        Escribir "Es un año bisiesto."
+    SiNo
+        Escribir "No es un año bisiesto."
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Parqueadero</h3>
+                    <p class="exercise-description">Calcula el costo de estacionamiento según el tipo de vehículo y las horas.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/condicionales/tarifa-parqueadero.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo TarifaParqueadero
+    Definir horas, minutos, tipo, factura Como Entero
+    Definir tarifa, total Como Real
+    Escribir "Tipo de vehiculo: 1. Carro, 2. Moto"
+    Leer tipo
+    Si tipo = 1 Entonces
+        tarifa &lt;- 4000
+    SiNo
+        tarifa &lt;- 2000
+    FinSi
+    Escribir "¿Cuantas horas estuvo?"
+    Leer horas
+    Si horas = 0 Entonces
+        Escribir "¿Cuantos minutos estuvo?"
+        Leer minutos
+        Si minutos &lt;= 15 Entonces
+            total &lt;- 0
+        SiNo
+            total &lt;- tarifa
+        FinSi
+    SiNo
+        total &lt;- tarifa * horas
+    FinSi
+    Si total > 30000 Entonces
+        total &lt;- 30000
+    FinSi
+    Escribir "¿Tienes factura? 1. No, 2. Si"
+    Leer factura
+    Si factura = 2 Entonces
+        total &lt;- total / 2
+    FinSi
+    Escribir "Total a pagar: $", total
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Semáforo de inventario</h3>
+                    <p class="exercise-description">Clasifica el inventario como suficiente, bajo o agotado.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/condicionales/semaforo-inventario.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo SemaforoDeInventario
+    Definir envases Como Entero
+    Escribir "¿Cuantos envases quedan?"
+    Leer envases
+    Si envases > 10 Entonces
+        Escribir "Verde: inventario suficiente."
+    SiNo
+        Si envases >= 1 Entonces
+            Escribir "Amarillo: inventario bajo."
+        SiNo
+            Escribir "Rojo: inventario agotado."
+        FinSi
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Validar edad</h3>
+                    <p class="exercise-description">Verifica si la edad ingresada cumple el requisito de mayoría de edad.</p>
+                    <div class="exercise-links">
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo ValidarEdad
+    Definir edad Como Entero
+    Escribir "¿Cuantos años tienes?"
+    Leer edad
+    Si edad >= 18 Entonces
+        Escribir "Eres mayor de edad."
+    SiNo
+        Escribir "Eres menor de edad."
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Validar registro</h3>
+                    <p class="exercise-description">Comprueba que el nombre y el correo no estén vacíos antes de confirmar un registro.</p>
+                    <div class="exercise-links">
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo ValidarRegistro
+    Definir nombre, correo Como Caracter
+    Escribir "Escribe tu nombre:"
+    Leer nombre
+    Escribir "Escribe tu correo:"
+    Leer correo
+    Si nombre &lt;> "" Y correo &lt;> "" Entonces
+        Escribir "Registro completado."
+    SiNo
+        Escribir "Completa todos los campos."
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+            </div>
+        </section>
+
+        <section class="exercise-section" id="semana-3" aria-labelledby="semana-3-title">
+            <div class="section-heading">
+                <div>
+                    <p class="week-label">Algoritmia · Semana 3</p>
+                    <h2 id="semana-3-title">Ciclos y subprocesos</h2>
+                </div>
+                <p class="section-intro">Practica repeticiones, acumuladores y organización de algoritmos.</p>
+            </div>
+            <div class="exercise-grid">
+                <article class="exercise-card">
+                    <h3>Cajero del parqueadero</h3>
+                    <p class="exercise-description">Acumula cobros hasta cerrar la caja y muestra el total recaudado.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ciclos/cajero-parqueadero.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo CajeroParqueadero
+    Definir valor, total Como Real
+    Definir carros Como Entero
+    total &lt;- 0
+    carros &lt;- 0
+    Escribir "Valor cobrado (0 para cerrar caja):"
+    Leer valor
+    Mientras valor &lt;> 0 Hacer
+        total &lt;- total + valor
+        carros &lt;- carros + 1
+        Escribir "Valor cobrado (0 para cerrar caja):"
+        Leer valor
+    FinMientras
+    Escribir "Carros atendidos: ", carros
+    Escribir "Total recaudado: $", total
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Calificaciones</h3>
+                    <p class="exercise-description">Procesa cinco notas y calcula promedio, aprobados, nota mayor y menor.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ciclos/calificaciones.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Calificaciones
+    Definir i, aprobados Como Entero
+    Definir nota, suma, mayor, menor Como Real
+    Definir alguienPerdio Como Logico
+    suma &lt;- 0
+    aprobados &lt;- 0
+    mayor &lt;- 0
+    menor &lt;- 5
+    alguienPerdio &lt;- Falso
+    Para i &lt;- 1 Hasta 5 Hacer
+        Escribir "Nota del estudiante ", i, ":"
+        Leer nota
+        suma &lt;- suma + nota
+        Si nota >= 3 Entonces
+            aprobados &lt;- aprobados + 1
+        SiNo
+            alguienPerdio &lt;- Verdadero
+        FinSi
+        Si nota > mayor Entonces
+            mayor &lt;- nota
+        FinSi
+        Si nota &lt; menor Entonces
+            menor &lt;- nota
+        FinSi
+    FinPara
+    Escribir "Promedio: ", suma / 5
+    Escribir "Aprobados: ", aprobados
+    Escribir "Nota mayor: ", mayor, " y menor: ", menor
+    Si alguienPerdio Entonces
+        Escribir "Hay estudiantes en refuerzo."
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Factura de restaurante</h3>
+                    <p class="exercise-description">Suma el pedido y calcula impuesto, propina y total mediante subprocesos.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/factura-restaurante.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo FacturaRestaurante
+    Definir subtotal, impuesto, propina Como Real
+    subtotal &lt;- LeerPedido
+    impuesto &lt;- CalcularPorcentaje(subtotal, 8)
+    propina &lt;- CalcularPorcentaje(subtotal, 10)
+    ImprimirFactura(subtotal, impuesto, propina)
+FinAlgoritmo
+
+SubProceso subtotal &lt;- LeerPedido
+    Definir precio, acumulador Como Real
+    acumulador &lt;- 0
+    Repetir
+        Escribir "Precio del plato (0 para terminar):"
+        Leer precio
+        Si precio > 0 Entonces
+            acumulador &lt;- acumulador + precio
+        FinSi
+    Hasta Que precio = 0
+    subtotal &lt;- acumulador
+FinSubProceso
+
+SubProceso valor &lt;- CalcularPorcentaje(base, porcentaje)
+    valor &lt;- base * porcentaje / 100
+FinSubProceso
+
+SubProceso ImprimirFactura(subtotal, impuesto, propina)
+    Definir total Como Real
+    total &lt;- subtotal + impuesto + propina
+    Escribir "Subtotal: $", subtotal
+    Escribir "Impuesto: $", impuesto
+    Escribir "Propina: $", propina
+    Escribir "Total: $", total
+FinSubProceso</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Pirámide</h3>
+                    <p class="exercise-description">Dibuja una pirámide de asteriscos con una altura indicada por el usuario.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ciclos/piramide.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Piramide
+    Definir n, fila, columna Como Entero
+    Escribir "Altura de la piramide:"
+    Leer n
+    Para fila &lt;- 1 Hasta n Hacer
+        Para columna &lt;- 1 Hasta n - fila Hacer
+            Escribir Sin Saltar " "
+        FinPara
+        Para columna &lt;- 1 Hasta 2 * fila - 1 Hacer
+            Escribir Sin Saltar "*"
+        FinPara
+        Escribir ""
+    FinPara
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+                <article class="exercise-card">
+                    <h3>Validar PIN</h3>
+                    <p class="exercise-description">Permite hasta tres intentos para ingresar el PIN correcto.</p>
+                    <div class="exercise-links">
+                        <a href="../../pseint/ejercicios/validar-pin.psc">Ver archivo</a>
+                        <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
+                    </div>
+                    <details class="code-disclosure">
+                        <summary>Ver código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo ValidarPin
+    Definir pin, pinIngresado, intento Como Entero
+    Definir acceso Como Logico
+    pin &lt;- 8090
+    intento &lt;- 0
+    acceso &lt;- Falso
+    Repetir
+        Escribir "Ingresa tu PIN:"
+        Leer pinIngresado
+        intento &lt;- intento + 1
+        Si pinIngresado = pin Entonces
+            acceso &lt;- Verdadero
+        FinSi
+    Hasta Que acceso O intento = 3
+    Si acceso Entonces
+        Escribir "Pago aprobado."
+    SiNo
+        Escribir "Tarjeta bloqueada."
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
+                </article>
+            </div>
+        </section>
+
+        <section class="exercise-section ai-section" id="ia" aria-labelledby="ia-title">
+            <div class="section-heading">
+                <div>
+                    <p class="week-label">Inteligencia artificial</p>
+                    <h2 id="ia-title">Actividades por semana</h2>
+                </div>
+                <p class="section-intro">Material y actividades de IA organizados en tres semanas.</p>
+            </div>
+            <article class="ai-week-card">
+                <p class="week-label">IA · Semana 1</p>
+                <h3>Ordenar números de menor a mayor con ayuda de IA</h3>
+                <p class="exercise-description">
+                    Pide a una herramienta de IA que explique cómo comparar números vecinos e intercambiarlos cuando estén desordenados.
+                    Las imágenes muestran el ejercicio y el resultado esperado: 3, 5, 7.
+                </p>
+                <div class="ai-gallery" aria-label="Imágenes de la actividad de ordenamiento">
+                    <figure class="ai-image-frame">
+                        <img src="conteo%20de%20numero%20de%20mayor%20a%20menor.jpg" alt="Apuntes manuscritos con comparaciones para ordenar los números 7, 5 y 3.">
+                        <figcaption>Apuntes del ejercicio</figcaption>
+                    </figure>
+                    <figure class="ai-image-frame">
+                        <img src="segunda%20opcion.jpg" alt="Pseudocódigo manuscrito que ordena una lista de números de menor a mayor y muestra 3, 5, 7.">
+                        <figcaption>Segunda versión y resultado</figcaption>
+                    </figure>
+                </div>
+            </article>
+            <article class="ai-week-card">
+                <p class="week-label">IA · Semana 2</p>
+                <h3>Razonamiento de IA</h3>
+                <p class="exercise-description">
+                    Actividad de análisis para asignar tres cupos de acompañamiento académico a ocho estudiantes.
+                    Incluye los resúmenes de Meta IA, Claude y ChatGPT, y la conclusión basada en tu selección.
+                </p>
+                <div class="exercise-links">
+                    <a href="semana-2-ia-cupos.txt" download>Descargar actividad y análisis (.txt)</a>
+                </div>
+            </article>
+            <article class="ai-week-card">
+                <p class="week-label">IA · Semana 3</p>
+                <h3>Repositorio InwiTagents</h3>
+                <p class="exercise-description">Consulta el repositorio del proyecto y sus recursos.</p>
+                <div class="exercise-links">
+                    <a href="https://github.com/BrianGcoder/inwitagents" target="_blank" rel="noopener noreferrer">Abrir repositorio InwiTagents</a>
+                </div>
+            </article>
+        </section>
+
+        <details class="archive-catalog">
+            <summary>Ver el catálogo anterior por categorías</summary>
         <section class="exercise-section" id="javascript" aria-labelledby="javascript-title">
             <div class="section-heading">
                 <h2 id="javascript-title">JavaScript</h2>
-                <p class="section-intro">Practica entradas, acumuladores y ciclos mientras resuelves un caso cotidiano.</p>
+                <p class="section-intro">Entradas, acumuladores y ciclos mientras resuelves un caso cotidiano.</p>
             </div>
             <article class="javascript-card">
                 <h3>Ahorro semanal para comprar audífonos</h3>
@@ -321,6 +973,22 @@
                     <a href="./">Abrir ejercicio</a>
                     <a href="script.js">Ver código JavaScript</a>
                 </div>
+                <details class="code-disclosure">
+                    <summary>Consultar código JavaScript</summary>
+                    <pre class="code-block"><code>let costo = Number(prompt("¿Cuánto cuesta el audífono que te quieres comprar?"));
+console.log("El audífono cuesta: $" + costo);
+
+let semana = 0;
+let ahorro = 0;
+
+while (ahorro &lt; costo) {
+    ahorro = ahorro + 5000;
+    semana = semana + 1;
+    console.log("Semana", semana, "llevas", ahorro);
+}
+
+console.log("Semanas necesarias:", semana);</code></pre>
+                </details>
             </article>
         </section>
 
@@ -337,6 +1005,46 @@
                         <a href="../../pseint/condicionales/discoteca.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Discoteca
+    Definir Edad Como Entero
+    Definir cedula Como Entero
+    Definir Respuesta Como Caracter
+    Definir metododepago Como Entero
+    Definir ListaNegra Como Caracter
+
+    Escribir "Bienvenido a la discoteca. ¿Es usted mayor de edad? Si o No"
+    Leer Respuesta
+    Si Respuesta = "Si" Entonces
+        Escribir "Digame por favor su Edad"
+        Leer Edad
+
+        Si Edad &gt;= 18 Y Edad &lt;= 24 Entonces
+            Escribir "Muestreme su cedula"
+            Escribir "¿Tiene su cedula con usted? 1.Si o 2.No"
+            Leer cedula
+            Si cedula = 1 Entonces
+                Escribir "¿Pagara con 1.efectivo o 2.tarjeta?"
+            SiNo
+                Escribir "No puede pasar, debe de tener la cedula"
+            FinSi
+        SiNo
+            Escribir "Pagar con 1.efectivo o 2.tarjeta?"
+        FinSi
+
+        Leer metododepago
+        Escribir "Revisaremos la ListaNegra, para conocer si puede pasar"
+        Escribir "¿Esta en la ListaNegra Si o No?"
+        Leer ListaNegra
+        Si ListaNegra = "Si" Entonces
+            Imprimir "No puede pasar tiene el acceso prohibido"
+        SiNo
+            Imprimir "Bienvenido, persona de " Edad, " años puede pasar"
+        FinSi
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Semáforo de inventario</h3>
@@ -345,6 +1053,30 @@
                         <a href="../../pseint/condicionales/semaforo-inventario.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Semaforo
+    Definir envases Como Entero
+
+    Escribir "Este es un semaforo de inventario. Ingresa la cantidad de productos que quedan."
+    Escribir "¿Cuantos envases quedan?"
+    Leer envases
+
+    Si envases &gt; 10 Entonces
+        Escribir "Envases en verde: tenemos suficiente"
+    SiNo
+        Si envases &lt;= 10 Y envases &gt;= 1 Entonces
+            Escribir "Envases en amarillo"
+        SiNo
+            Si envases = 0 Entonces
+                Escribir "Envases en ROJO, debes de pedir"
+            SiNo
+                Escribir "Error"
+            FinSi
+        FinSi
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Tarifa de parqueadero</h3>
@@ -353,6 +1085,52 @@
                         <a href="../../pseint/condicionales/tarifa-parqueadero.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo TarifaParqueadero
+    Definir hora, minutos, tipo, factura Como Entero
+    Definir costoHora, total Como Real
+
+    Escribir "¿Que tipo de vehiculo es? 1.Carro 2.Moto"
+    Leer tipo
+    Escribir "¿Cuantas horas estuvo?"
+    Leer hora
+
+    Segun tipo Hacer
+        1:
+            costoHora &lt;- 4000
+        2:
+            costoHora &lt;- 2000
+    FinSegun
+
+    Segun hora Hacer
+        0:
+            Escribir "¿Cuantos minutos estuvo?"
+            Leer minutos
+            Si minutos &lt;= 15 Entonces
+                Escribir "El valor a pagar es $0"
+                total &lt;- 0
+            SiNo
+                total &lt;- costoHora
+                Escribir costoHora
+            FinSi
+        De Otro Modo:
+            total &lt;- costoHora * hora
+            Si total &gt;= 30000 Entonces
+                total &lt;- 30000
+            FinSi
+            Imprimir "El valor a pagar es $" total
+    FinSegun
+
+    Escribir "¿Desea pagar o cuenta con factura? 1.Pagar 2.Tengo factura"
+    Leer factura
+    Si factura = 2 Entonces
+        Imprimir "El valor a pagar es $" total / 2
+    SiNo
+        Imprimir "El valor a pagar es $" total
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
             </div>
         </section>
@@ -370,6 +1148,27 @@
                         <a href="../../pseint/ciclos/cajero-parqueadero.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo CajeroParqueadero
+    Definir valor, total Como Real
+    Definir carros Como Entero
+    total &lt;- 0
+    carros &lt;- 0
+
+    Escribir "Valor cobrado (0 para cerrar caja):"
+    Leer valor
+    Mientras valor &lt;> 0 Hacer
+        total &lt;- total + valor
+        carros &lt;- carros + 1
+        Escribir "Valor cobrado (0 para cerrar caja):"
+        Leer valor
+    FinMientras
+
+    Escribir "Carros atendidos: ", carros
+    Escribir "Total recaudado: $", total
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Resumen de calificaciones</h3>
@@ -378,6 +1177,43 @@
                         <a href="../../pseint/ciclos/calificaciones.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Calificaciones
+    Definir i, aprobados Como Entero
+    Definir nota, suma, mayor, menor Como Real
+    Definir alguienPerdio Como Logico
+    suma &lt;- 0
+    aprobados &lt;- 0
+    mayor &lt;- 0
+    menor &lt;- 5
+    alguienPerdio &lt;- Falso
+
+    Para i &lt;- 1 Hasta 5 Hacer
+        Escribir "Nota del estudiante ", i, ":"
+        Leer nota
+        suma &lt;- suma + nota
+        Si nota &gt;= 3 Entonces
+            aprobados &lt;- aprobados + 1
+        SiNo
+            alguienPerdio &lt;- Verdadero
+        FinSi
+        Si nota &gt; mayor Entonces
+            mayor &lt;- nota
+        FinSi
+        Si nota &lt; menor Entonces
+            menor &lt;- nota
+        FinSi
+    FinPara
+
+    Escribir "Promedio: ", suma / 5
+    Escribir "Aprobados: ", aprobados
+    Escribir "Nota mas alta: ", mayor, " y mas baja: ", menor
+    Si alguienPerdio Entonces
+        Escribir "Hay estudiantes en refuerzo"
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>El caracol en el pozo</h3>
@@ -386,6 +1222,28 @@
                         <a href="../../pseint/ciclos/caracol.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo CaracolEnElPozo
+    Definir avanzo, dias Como Entero
+    avanzo &lt;- 0
+    dias &lt;- 0
+
+    Escribir "El caracol esta en un pozo de 10 metros. Cada dia sube 3 metros y cada noche baja 2."
+    Mientras dias &lt; 8 Hacer
+        dias &lt;- dias + 1
+        avanzo &lt;- avanzo + 3
+        Escribir "Dia ", dias, ": el caracol avanzo ", avanzo, " metros"
+
+        Si avanzo &lt; 10 Entonces
+            avanzo &lt;- avanzo - 2
+            Escribir "En la noche retrocedio y quedo con ", avanzo, " metros"
+        FinSi
+    FinMientras
+
+    Imprimir "El caracol salio del pozo de 10 metros"
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Pirámide de asteriscos</h3>
@@ -394,6 +1252,24 @@
                         <a href="../../pseint/ciclos/piramide.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Piramide
+    Definir n, fila, j Como Entero
+    Escribir "Altura de la piramide:"
+    Leer n
+
+    Para fila &lt;- 1 Hasta n Hacer
+        Para j &lt;- 1 Hasta n - fila Hacer
+            Escribir Sin Saltar " "
+        FinPara
+        Para j &lt;- 1 Hasta 2 * fila - 1 Hacer
+            Escribir Sin Saltar "*"
+        FinPara
+        Escribir ""
+    FinPara
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
             </div>
         </section>
@@ -411,6 +1287,18 @@
                         <a href="../../pseint/ejercicios/edad-en-dias.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo EdadCalculoEnDias
+    Definir edad Como Entero
+    Definir dias Como Entero
+
+    Escribir "¿Que edad tienes?"
+    Leer edad
+    dias &lt;- edad * 365
+    Escribir dias, " aproximadamente"
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Cálculo de edad con fechas</h3>
@@ -419,6 +1307,58 @@
                         <a href="../../pseint/ejercicios/calculo-edad-fechas.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo CalculoEdad
+    Definir DNacimiento, MNacimiento, ANacimiento Como Entero
+    Definir DActual, MActual, AActual Como Entero
+    Definir DiasTotales, contadorBisiestos, anio Como Entero
+
+    Escribir "Escriba su fecha de nacimiento (dia, mes, año)"
+    Leer DNacimiento, MNacimiento, ANacimiento
+    Escribir "Escriba la fecha actual (dia, mes, año)"
+    Leer DActual, MActual, AActual
+
+    contadorBisiestos &lt;- 0
+    Escribir "Calculando años bisiestos entre ", ANacimiento, " y ", AActual
+    Para anio &lt;- ANacimiento Hasta AActual Hacer
+        Si (anio MOD 4 = 0 Y anio MOD 100 &lt;> 0) O (anio MOD 400 = 0) Entonces
+            contadorBisiestos &lt;- contadorBisiestos + 1
+            Escribir "Años bisiestos transcurridos: ", contadorBisiestos
+        FinSi
+    FinPara
+
+    Definir anos Como Entero
+    anos &lt;- (AActual - ANacimiento) + 1
+    Escribir "Años aproximados: ", anos
+    DiasTotales &lt;- anos * 365 + contadorBisiestos
+    Escribir "Dias aproximados: ", DiasTotales
+
+    Definir actual Como Entero
+    actual &lt;- MNacimiento + 1
+    Si actual &gt; 12 Entonces
+        actual &lt;- 1
+    FinSi
+
+    Definir terminado Como Logico
+    terminado &lt;- Falso
+    Escribir "Meses desde el siguiente al nacimiento hasta el mes actual:"
+    Repetir
+        Escribir Sin Saltar actual, " "
+        Si actual = MActual - 1 Entonces
+            terminado &lt;- Verdadero
+        SiNo
+            actual &lt;- actual + 1
+            Si actual &gt; 12 Entonces
+                actual &lt;- 1
+            FinSi
+        FinSi
+    Hasta Que terminado = Verdadero
+    Escribir actual
+
+    Escribir "Tu edad actual es"
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Factura de restaurante</h3>
@@ -427,6 +1367,48 @@
                         <a href="../../pseint/ejercicios/factura-restaurante.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo FacturaRestaurante
+    Definir subtotal, impuesto, propina Como Real
+    subtotal &lt;- LeerPedido
+    impuesto &lt;- CalcularPorcentaje(subtotal, 8)
+    propina &lt;- CalcularPorcentaje(subtotal, 10)
+    ImprimirFactura(subtotal, impuesto, propina)
+FinAlgoritmo
+
+SubProceso subtotal &lt;- LeerPedido
+    Definir precio, acumulador Como Real
+    acumulador &lt;- 0
+    precio &lt;- 1
+    Escribir "Ingrese los precios de los platos (0 para terminar):"
+    Mientras precio &lt;> 0 Hacer
+        Leer precio
+        Si precio &lt;> 0 Entonces
+            acumulador &lt;- acumulador + precio
+        FinSi
+    FinMientras
+    subtotal &lt;- acumulador
+FinSubProceso
+
+SubProceso valor &lt;- CalcularPorcentaje(base, porcentaje)
+    valor &lt;- (base * porcentaje) / 100
+FinSubProceso
+
+SubProceso ImprimirFactura(subtotal, impuesto, propina)
+    Definir total Como Real
+    total &lt;- subtotal + impuesto + propina
+    Escribir "----------------------------------"
+    Escribir "          FACTURA RESTAURANTE      "
+    Escribir "----------------------------------"
+    Escribir "Subtotal: $", subtotal
+    Escribir "Impuesto (8%): $", impuesto
+    Escribir "Propina (10%): $", propina
+    Escribir "----------------------------------"
+    Escribir "TOTAL A PAGAR: $", total
+    Escribir "----------------------------------"
+FinSubProceso</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Propina y cuenta por persona</h3>
@@ -435,6 +1417,25 @@
                         <a href="../../pseint/ejercicios/propina-restaurante.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo Propinas
+    Definir personas Como Entero
+    Definir cuenta, propina, total, unitario Como Real
+
+    Escribir "¿Cuantos son?"
+    Leer personas
+    Escribir "¿Cuanto es la cuenta?"
+    Leer cuenta
+
+    propina &lt;- cuenta * 0.10
+    Escribir "El valor de la propina es: $", propina
+    total &lt;- cuenta + propina
+    Escribir "Total: $", total
+    unitario &lt;- total / personas
+    Escribir "El valor a pagar cada uno es: $", unitario
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
             </div>
         </section>
@@ -452,6 +1453,75 @@
                         <a href="../../pseint/ejercicios/parqueadero-control-vehiculos.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo ControlParqueadero
+    Definir hora, minutos, tipo, respuesta Como Entero
+    Definir costoHora, total Como Real
+    Definir entrada, salida, adentro Como Entero
+    Definir carro, moto Como Entero
+
+    entrada &lt;- 0
+    salida &lt;- 0
+    adentro &lt;- 0
+    carro &lt;- 0
+    moto &lt;- 0
+
+    Repetir
+        Escribir "¿1.Entrada o 2.Salida?"
+        Leer respuesta
+        Si respuesta = 1 Entonces
+            Escribir "¿Que tipo de vehiculo es? 1.Carro 2.Moto"
+            Leer tipo
+            Si tipo = 1 Entonces
+                carro &lt;- carro + 1
+                Escribir "Ingreso un carro"
+            FinSi
+            Si tipo = 2 Entonces
+                moto &lt;- moto + 1
+                Escribir "Ingreso una moto"
+            FinSi
+            entrada &lt;- entrada + 1
+        SiNo
+            Escribir "¿Que tipo de vehiculo es? 1.Carro 2.Moto"
+            Leer tipo
+            Escribir "¿Cuantas horas estuvo?"
+            Leer hora
+
+            Segun tipo Hacer
+                1:
+                    costoHora &lt;- 4000
+                2:
+                    costoHora &lt;- 2000
+            FinSegun
+
+            Si hora &gt;= 1 Entonces
+                total &lt;- hora * costoHora
+            SiNo
+                Escribir "¿Cuantos minutos estuvo?"
+                Leer minutos
+                Si minutos &lt;= 15 Entonces
+                    total &lt;- 0
+                SiNo
+                    total &lt;- costoHora
+                FinSi
+            FinSi
+
+            Si total &gt;= 30000 Entonces
+                total &lt;- 30000
+            FinSi
+            Escribir "El valor a pagar es $", total
+            salida &lt;- salida + 1
+        FinSi
+
+        adentro &lt;- entrada - salida
+        Escribir "Adentro hay: ", adentro, " vehiculos."
+        Escribir "Hay ", moto, " motos y ", carro, " carros"
+    Hasta Que adentro = 0
+
+    Escribir "El valor total recaudado es: ", total
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
                 <article class="exercise-card">
                     <h3>Validación de PIN</h3>
@@ -460,13 +1530,45 @@
                         <a href="../../pseint/ejercicios/validar-pin.psc">Ver ejercicio</a>
                         <a href="https://pseint-web.app/" target="_blank" rel="noopener noreferrer">Abrir PSeInt Web</a>
                     </div>
+                    <details class="code-disclosure">
+                        <summary>Consultar código PSeInt</summary>
+                        <pre class="code-block"><code>Algoritmo ValidarPin
+    Definir PIN, intento Como Entero
+    Definir acceso Como Logico
+
+    Escribir "Haz decidido pagar con tarjeta, perfecto"
+    Escribir "El valor a pagar es de $75.250"
+    Escribir "**Pasa la tarjeta**"
+
+    PIN &lt;- 8090
+    intento &lt;- 0
+    acceso &lt;- Falso
+
+    Repetir
+        Escribir "Debe de ingresar su PIN"
+        Leer PIN
+        intento &lt;- intento + 1
+        Si PIN = 8090 Entonces
+            acceso &lt;- Verdadero
+            Escribir "Pago aprobado"
+        SiNo
+            Escribir "Recuerde que tiene solo 3 intentos o se bloqueara."
+        FinSi
+    Hasta Que (acceso = Falso Y intento = 3) O acceso = Verdadero
+
+    Si acceso = Falso Y intento = 3 Entonces
+        Escribir "Tarjeta bloqueada."
+    FinSi
+FinAlgoritmo</code></pre>
+                    </details>
                 </article>
             </div>
         </section>
+        </details>
     </main>
 
     <footer>
-        <p>Para ejecutar un ejercicio PSeInt, abre su archivo, copia el pseudocódigo y pégalo en PSeInt Web.</p>
+        <p>Para ejecutar un ejercicio PSeInt, copia el código del bloque y pégalo en PSeInt Web.</p>
     </footer>
     <script src="script.js"></script>
 </body>

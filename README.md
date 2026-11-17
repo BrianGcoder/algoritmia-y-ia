@@ -29,13 +29,15 @@ algoritmos y proyectos de inteligencia artificial.
 
 ### JavaScript
 
-- [Catálogo de ejercicios](javascript/ahorro-semanal/index.html): presenta el
-  ejercicio de ahorro semanal en JavaScript y organiza los ejercicios PSeInt
-  por categoría. Cada reto PSeInt enlaza su archivo y el editor web.
+- [Catálogo de ejercicios](javascript/ahorro-semanal/index.html): organiza 15
+  ejercicios de programación en tres semanas, con códigos consultables en la
+  página. Incluye una sección de IA de tres semanas, las imágenes del ejercicio
+  de ordenamiento, el análisis de cupos de la semana 2 en un archivo de texto y
+  un enlace al repositorio InwiTagents.
 
 ## Proposito y aprendizaje
 
-La pagina se creo para reunir las consignas y los archivos en un solo lugar,
+La pagina se creo para reunir los archivos en un solo lugar,
 ordenados por tema, y facilitar su practica en JavaScript o en PSeInt Web.
 Cada grupo ayuda a aprender una herramienta distinta:
 
@@ -48,12 +50,14 @@ Cada grupo ayuda a aprender una herramienta distinta:
   reglas, como registrar vehiculos o limitar intentos de acceso.
 - **JavaScript:** el ahorro semanal suma un monto fijo en cada vuelta y se
   detiene al alcanzar el precio; practica ciclos, acumuladores y condiciones.
+- **Inteligencia artificial:** la página agrupa actividades por semana e
+  incluye el ejercicio de ordenamiento con sus apuntes.
 
 Estos conceptos sirven como base para crear programas mas completos y resolver
 problemas nuevos paso a paso.
 
 **Conclusion:** practicar algoritmos ayuda a convertir problemas cotidianos en
-soluciones claras.
+soluciones claras
 
 ## Requisitos y uso
 
@@ -63,11 +67,8 @@ soluciones claras.
   [PSeInt Web](https://pseint-web.app/), copia el contenido del archivo `.psc`
   y pégalo en el editor.
 - Abre `javascript/ahorro-semanal/index.html` en un navegador para ver las
-  consignas. En el ejercicio de JavaScript, responde la pregunta y consulta los
-  resultados en la consola del navegador.
-
-Los ejercicios son material de practica; algunos pueden estar incompletos o
-requerir correcciones antes de usarlos como soluciones definitivas.
+  consignas y consultar el código de cada ejercicio. En el ejercicio de
+  JavaScript, responde la pregunta y consulta los resultados en la consola.
 
 ## Repositorio en GitHub
 

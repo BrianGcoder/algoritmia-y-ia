@@ -1,0 +1,81 @@
+ACTIVIDAD: TRES CUPOS PARA OCHO ESTUDIANTES
+
+1. PLANTEAMIENTO
+
+En un curso de programación participan ocho estudiantes con distintos niveles
+de desempeño y circunstancias personales. Solo existen tres cupos para acceder
+a un programa de acompañamiento académico.
+
+El propósito es utilizar herramientas de inteligencia artificial (IA) para
+analizar la información, identificar quiénes podrían necesitar más apoyo y
+justificar la selección. Las notas están en una escala de 0 a 5 y la nota
+mínima aprobatoria es 3,0.
+
+2. INFORMACIÓN DE LOS ESTUDIANTES
+
+Estudiante | Nota | Asistencia | Situación particular
+Ana        | 2,1  | 95 %       | Estudia de forma independiente, pero le cuesta comprender conceptos fundamentales.
+Bruno      | 2,8  | 65 %       | Sus responsabilidades laborales coinciden con algunos horarios de clase.
+Camila     | 2,8  | 100 %      | Resuelve ejercicios con ayuda, pero tiene dificultades para hacerlo sola.
+Diego      | 1,9  | 60 %       | Se ausenta para cuidar a un familiar; quiere continuar, pero siente que se ha quedado atrás.
+Elena      | 2,7  | 100 %      | Comprende las explicaciones, pero comete errores al elaborar programas.
+Felipe     | 4,3  | 95 %       | Tiene buen desempeño y quiere aprender contenidos más avanzados.
+Gabriela   | 2,6  | 80 %       | Tiene acceso limitado a un computador porque debe compartirlo en su hogar.
+Hugo       | 2,5  | 90 %       | Cumple con las entregas, pero le cuesta explicar el funcionamiento de su código.
+
+3. RESUMEN DE LAS RESPUESTAS
+
+META IA
+
+Selecciona a Diego, Ana y Camila. Prioriza el riesgo académico, la posibilidad
+de aprovechar las sesiones y que la dificultad pueda abordarse con apoyo
+pedagógico. Diego necesita ponerse al día; Ana requiere reforzar conceptos
+fundamentales; Camila necesita desarrollar autonomía. Señala que las barreras
+de horario o acceso a computador también requieren soluciones específicas.
+
+CLAUDE
+
+Selecciona a Diego, Gabriela y Bruno. Considera el riesgo de rezago y las
+barreras que afectan el aprendizaje: Diego necesita apoyo flexible para
+recuperar clases, Gabriela requiere acceso a un computador y Bruno necesita
+horarios compatibles con su trabajo. Sugiere que Felipe podría beneficiarse
+más de retos avanzados y considera a Ana como una posible siguiente candidata.
+
+CHATGPT
+
+Selecciona a Diego, Camila y Gabriela. La respuesta propone considerar la
+necesidad de acompañamiento, las barreras que afectan el aprendizaje y las
+posibilidades de mejorar, en lugar de escoger únicamente a quienes tienen las
+notas más bajas.
+
+MI RESPUESTA
+
+Selecciono a Bruno, Hugo y Camila. Mi criterio es ofrecer apoyo estratégico a
+quienes podrían avanzar con una intervención concreta:
+
+- Bruno (2,8; 65 % de asistencia): necesita opciones flexibles para que el
+  horario de trabajo no le impida aprovechar las tutorías y ponerse al día.
+- Hugo (2,5; 90 % de asistencia): el acompañamiento puede ayudarle a explicar
+  la lógica de su código y comprender mejor lo que entrega.
+- Camila (2,8; 100 % de asistencia): puede ganar autonomía y confianza para
+  resolver ejercicios sin depender de ayuda constante.
+
+No selecciono a Ana porque necesita una nivelación conceptual más profunda;
+a Diego porque sus ausencias requieren un plan de recuperación más amplio; a
+Elena porque puede trabajar sus errores con práctica y retroalimentación; a
+Felipe porque su desempeño es avanzado; y a Gabriela porque su principal
+barrera es el acceso a un computador, que requiere una solución material.
+
+4. CONCLUSIÓN
+
+Las herramientas de IA proponen grupos distintos porque ponderan de manera
+diferente el riesgo académico, la asistencia, las barreras externas y la
+posibilidad de mejorar con tutorías. Ninguna selección debe tomarse como una
+respuesta automática: conviene revisar cada caso y las condiciones reales del
+programa.
+
+Mi decisión final es mantener a Bruno, Hugo y Camila. Bruno necesita una
+modalidad de apoyo compatible con su trabajo; Hugo, acompañamiento para
+comprender y explicar su código; y Camila, práctica guiada para resolver con
+mayor independencia. La selección busca que cada cupo responda a una necesidad
+concreta y que el apoyo pueda aprovecharse efectivamente.
